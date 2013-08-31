@@ -49,7 +49,6 @@
         scrollTop = $window.scrollTop();
         if (scrollTop + this.offsetTop < sentinelTop) {
           if (this.state !== 'top') {
-            this.sentinel.top.css({ height: 0 });
             this.$el.css({
               position: 'relative',
               top: 0,
@@ -61,12 +60,15 @@
         }
 
         sentinelBottom = this.sentinel.bottom.offset().top;
-        outerHeight = this.$el.outerHeight(true);
-        if (this.state === 'top') {
-          this.sentinel.top.css({ height: outerHeight });
+        outerHeight = this.$el.outerHeight(true) + this.offsetBottom;
+        if (this.state = 'top') {
+          if (sentinelBottom - sentinelTop - outerHeight <= 0) {
+            // No need to chase. Sidebar is taller than main contents.
+            return;
+          }
         }
-        if (scrollTop + this.offsetTop + outerHeight + this.offsetBottom >
-            sentinelBottom) {
+
+        if (scrollTop + this.offsetTop + outerHeight > sentinelBottom) {
           if (this.state !== 'bottom') {
             this.$el.css({
               position: 'absolute',
