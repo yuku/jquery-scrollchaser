@@ -49,23 +49,23 @@
       state: 'top',  // top, fixed or bottom
 
       onScroll: function (e) {
-        var sentinelTop, sentinelBottom, scrollTop, outerHeight;
+        var sentinelTop, sentinelBottom, scrollTop, outerHeight, wrapperHeight;
         sentinelTop = this.sentinel.offset().top;
         scrollTop = $window.scrollTop();
         if (scrollTop + this.offsetTop < sentinelTop) {
           if (this.state !== 'top') {
             this.$el.css({
               position: 'relative',
-              top: 0,
-              bottom: ''
+              top: 0
             });
             this.state = 'top';
           }
           return;
         }
 
-        sentinelBottom = this.$wrapper.offset().top +
-          this.$wrapper.outerHeight() + parseInt(this.$wrapper.css('margin-top'), 10);
+        wrapperHeight = this.$wrapper.outerHeight();
+        sentinelBottom = this.$wrapper.offset().top + wrapperHeight
+           + parseInt(this.$wrapper.css('margin-top'));
         outerHeight = this.$el.outerHeight(true) + this.offsetBottom;
         if (this.state = 'top') {
           if (sentinelBottom - sentinelTop - outerHeight <= 0) {
@@ -78,8 +78,7 @@
           if (this.state !== 'bottom') {
             this.$el.css({
               position: 'absolute',
-              top: '',
-              bottom: this.offsetBottom
+              top: wrapperHeight - outerHeight
             });
             this.state = 'bottom';
           }
@@ -87,8 +86,7 @@
           if (this.state !== 'fixed') {
             this.$el.css({
               position: 'fixed',
-              top: this.offsetTop,
-              bottom: ''
+              top: this.offsetTop
             });
             this.state = 'fixed';
           }
