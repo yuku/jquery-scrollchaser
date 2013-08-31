@@ -108,6 +108,7 @@
   })();
 
   $.fn.scrollChaser = function (options) {
+    options || (options = {});
     if (!options.wrapper) {
       options.wrapper = $(document.body);
     } else if (!(options.wrapper instanceof $)) {
