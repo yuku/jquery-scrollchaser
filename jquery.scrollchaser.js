@@ -35,8 +35,9 @@
       this.wrapBySentinels();
       this.offsetTop = options.offsetTop || 0;
       this.offsetBottom = options.offsetBottom || 0;
-      $window.on('scroll',
-                 throttle(this.onScroll, this, options.throttle || 10));
+      var handler = throttle(this.onScroll, this, options.throttle || 10);
+      $window.on('scroll', handler);
+      $window.on('resize', handler);
     }
 
     $.extend(ScrollChaser.prototype, {
