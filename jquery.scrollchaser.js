@@ -44,7 +44,7 @@
       state: 'top',  // top, fixed or bottom
 
       onScroll: function (e) {
-        var sentinelTop, sentinelBottom, scrollTop, scrollHeight, margin;
+        var sentinelTop, sentinelBottom, scrollTop, outerHeight;
         sentinelTop = this.sentinel.top.offset().top;
         scrollTop = $window.scrollTop();
         if (scrollTop + this.offsetTop < sentinelTop) {
@@ -61,14 +61,12 @@
         }
 
         sentinelBottom = this.sentinel.bottom.offset().top;
-        scrollHeight = this.$el.prop('scrollHeight');
-        margin = parseInt(this.$el.css('margin-top'), 10) +
-                 parseInt(this.$el.css('margin-bottom'), 10);
+        outerHeight = this.$el.outerHeight(true);
         if (this.state === 'top') {
-          this.sentinel.top.css({ height: scrollHeight + margin });
+          this.sentinel.top.css({ height: outerHeight });
         }
-        if (scrollTop + this.offsetTop + scrollHeight + margin +
-            this.offsetBottom > sentinelBottom) {
+        if (scrollTop + this.offsetTop + outerHeight + this.offsetBottom >
+            sentinelBottom) {
           if (this.state !== 'bottom') {
             this.$el.css({
               position: 'absolute',
