@@ -109,7 +109,7 @@
 
   $.fn.scrollChaser = function (options) {
     if (!options.wrapper) {
-      throw "'wrapper' is required";
+      options.wrapper = $(document.body);
     } else if (!(options.wrapper instanceof $)) {
       options.wrapper = $(options.wrapper);
     }
