@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery.scrollChaser</title>
+        <link rel="stylesheet" href="media/stylesheets/bootstrap.css"/>
+        <link rel="stylesheet" href="media/stylesheets/font-awesome.css"/>
+        <link rel="stylesheet" href="media/stylesheets/syntax.css"/>
+        <link rel="stylesheet" href="media/stylesheets/main.css"/>
+    </head>
+    <body>
+        <section>
+            <div class="container">
+                <!-- header -->
+                <div class="row">
+                    <div class="span12">
+                        <div class="page-header">
+                            <h1>
+                                jQuery.scrollChaser
+                                <small>
+                                    Sticky boxes are fond of standing out
+                                </small>
+                            </h1>
+                        </div>
+                        <a href="https://github.com/yuku-t/jquery-scrollchaser" class="btn
+                            btn-default btn-large">
+                            <i class="icon-github"></i>
+                            Fork me on GitHub.
+                        </a>
+                    </div>
+                </div>
+
+                <!-- sample 1 -->
+                <div class="row">
+                    <div class="span12"><h2>Sample 1</h2></div>
+                    <div class="span12 wrapper wrapper-1">
+                        <div class="wrapper-text">.wrapper-1</div>
+                        <div class="row">
+                            <div class="offset1 span7">
+                                <div class="main">
+                                    <pre class="script">
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-1'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
+    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-1'</span>  <span class="c1">// OR $('.wrapper-1')</span>
+<span class="p">});</span></pre>
+                                    <code>wrapper</code> is required.
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="scroll-chaser scroll-chaser-1">
+                                    .scroll-chaser-1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sample 2 -->
+                <div class="row">
+                    <div class="span12"><h2>Sample 2</h2></div>
+                    <div class="span12 wrapper wrapper-2">
+                        <div class="wrapper-text">.wrapper-2</div>
+                        <div class="row">
+                            <div class="offset1 span7">
+                                <div class="main">
+                                    <pre class="script">
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-2'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
+    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-2'</span>
+<span class="p">});</span></pre>
+Sidebar can contain other contents.
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="other">
+                                    other sidebar contents
+                                </div>
+                                <div class="scroll-chaser scroll-chaser-2">
+                                    .scroll-chaser-2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sample 3 -->
+                <div class="row">
+                    <div class="span12"><h2>Sample 3</h2></div>
+                    <div class="span12 wrapper wrapper-3">
+                        <div class="wrapper-text">.wrapper-3</div>
+                        <div class="row">
+                            <div class="offset1 span7">
+                                <div class="main">
+                                    <pre class="script">
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-3'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
+    <span class="nx">wrapper</span><span class="o">:</span>   <span class="s1">'.wrapper-3'</span><span class="p">,</span>
+    <span class="nx">offsetTop</span><span class="o">:</span> <span class="mi">20</span>
+<span class="p">});</span></pre>
+Use <code>offsetTop</code> option to insert pads on the box.
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="scroll-chaser scroll-chaser-3">
+                                    .scroll-chaser-3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sample 4 -->
+                <div class="row">
+                    <div class="span12"><h2>Sample 4</h2></div>
+                    <div class="span12 wrapper wrapper-4">
+                        <div class="wrapper-text">.wrapper-4</div>
+                        <div class="row">
+                            <div class="offset1 span7">
+                                <div class="main">
+                                    <pre class="script">
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-4'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
+    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-4'</span><span class="p">,</span>
+    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
+<span class="p">});</span></pre>
+Use <code>offsetBottom</code> option to insert pads under the box.
+                                </div>
+                                <div class="margin-bottom-40px">
+                                    margin-bottom: 40px;
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="scroll-chaser scroll-chaser-4">
+                                    .scroll-chaser-4
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sample 5 -->
+                <div class="row">
+                    <div class="span12"><h2>Sample 5</h2></div>
+                    <div class="span12 wrapper wrapper-5">
+                        <div class="wrapper-text">.wrapper-5</div>
+                        <div class="row">
+                            <div class="offset1 span7">
+                                <div class="main">
+                                    <pre class="script">
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-5'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
+    <span class="nx">wrapper</span><span class="o">:</span>  <span class="s1">'.wrapper-5'</span><span class="p">,</span>
+    <span class="nx">throttle</span><span class="o">:</span> <span class="mi">1000</span>  <span class="c1">// Default 10</span>
+<span class="p">});</span></pre>
+If you have some performance problem, use <code>throttle</code> option to
+decrease the frequency of calculation. If the option is given, the calculation
+will be executed once in <code>throttle</code> msec.
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="scroll-chaser scroll-chaser-5">
+                                    .scroll-chaser-5
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sample 6 -->
+                <div class="row">
+                    <div class="span12"><h2>Sample 6</h2></div>
+                    <div class="span12 wrapper wrapper-6">
+                        <div class="wrapper-text">.wrapper-6</div>
+                        <div class="row">
+                            <div class="offset1 span7">
+                                <div class="main">
+                                    <pre class="script">
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-6'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
+    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-6'</span><span class="p">,</span>
+    <span class="nx">offsetTop</span><span class="o">:</span>    <span class="mi">20</span><span class="p">,</span>
+    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
+<span class="p">});</span></pre>
+                                </div>
+                                <div class="margin-bottom-40px">
+                                    margin-bottom: 40px;
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="other">
+                                    other sidebar contents
+                                </div>
+                                <div class="scroll-chaser scroll-chaser-6">
+                                    .scroll-chaser-6
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <p>Created by <a href="https://github.com/yuku-t">Yuku Takahashi</a>.</p>
+                        <p>Licensed under <a href="http://opensource.org/licenses/MIT">MIT</a> with starring the
+                        <a
+                            href="https://github.com/yuku-t/jquery-scrollchaser">repository</a>
+                        at GitHub,
+                        OR <a href="http://opensource.org/licenses/GPL-2.0">GPL</a> without starring.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="media/javascripts/jquery-2.0.3.js"></script>
+        <script src="jquery.scrollchaser.js"></script>
+        <script src="media/javascripts/main.js"></script>
+    </body>
+</html>

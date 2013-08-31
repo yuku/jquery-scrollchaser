@@ -1,0 +1,55 @@
+footer {
+    border-top: 1px solid Gainsboro;
+    padding: 30px;
+    background-color: WhiteSmoke;
+    color: Gray;
+    text-align: center;
+    height: 500px;
+}
+
+.wrapper {
+    background-color: #f1f1f1;
+    margin-bottom: 30px;
+}
+
+.wrapper-text {
+    padding: 10px;
+}
+
+.main {
+    background-color: white;
+    border: 1px dashed LightGray;
+    height: 200px;
+    padding: 10px;
+}
+
+.margin-bottom-40px {
+    background-color: white;
+    border-bottom: 1px dashed LightGray;
+    border-left: 1px dashed LightGray;
+    border-right: 1px dashed LightGray;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+}
+
+.other {
+    background-color: white;
+    border: 1px dashed LightGray;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.scroll-chaser {
+    background-color: white;
+    border: 1px dashed LightGray;
+    height: 50px;
+    padding: 10px;
+}
+
+.under {
+    border: 1px dashed LightGray;
+    padding: 10px;
+    height: 300px;
+    margin-bottom: 30px;
+}
