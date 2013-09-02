@@ -6,4 +6,4 @@ Sticky boxes are fond of standing out
 License
 -------
 
-MIT with starring the repository at GitHub. OR GPL without starring.
+MIT

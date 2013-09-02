@@ -2,8 +2,7 @@
  * jQuery.scrollChaser.js
  *
  * Repositiory: https://github.com/yuku-t/jquery-scrollchaser
- * License:     MIT with starring the repository at GitHub.
- *              OR GPL without starring.
+ * License:     MIT
  * Author:      Yuku Takahashi
  */
 
