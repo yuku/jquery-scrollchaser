@@ -91,14 +91,14 @@ Sidebar can contain other contents.
                                 <div class="main">
                                     <pre class="script">
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-3'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>   <span class="s1">'.wrapper-3'</span><span class="p">,</span>
-    <span class="nx">offsetTop</span><span class="o">:</span> <span class="mi">20</span>
+    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-3'</span>  <span class="c1">// OR $('.wrapper-3')</span>
 <span class="p">});</span></pre>
-Use <code>offsetTop</code> option to insert pads on the box.
+Sidebar is taller than main contents? No problem :)
                                 </div>
                             </div>
                             <div class="span3">
-                                <div class="scroll-chaser scroll-chaser-3">
+                                <div class="scroll-chaser scroll-chaser-3"
+                                    style="height: 300px;">
                                     .scroll-chaser-3
                                 </div>
                             </div>
@@ -116,13 +116,10 @@ Use <code>offsetTop</code> option to insert pads on the box.
                                 <div class="main">
                                     <pre class="script">
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-4'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-4'</span><span class="p">,</span>
-    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
+    <span class="nx">wrapper</span><span class="o">:</span>   <span class="s1">'.wrapper-4'</span><span class="p">,</span>
+    <span class="nx">offsetTop</span><span class="o">:</span> <span class="mi">20</span>
 <span class="p">});</span></pre>
-Use <code>offsetBottom</code> option to insert pads under the box.
-                                </div>
-                                <div class="margin-bottom-40px">
-                                    margin-bottom: 40px;
+Use <code>offsetTop</code> option to insert pads on the box.
                                 </div>
                             </div>
                             <div class="span3">
@@ -144,12 +141,13 @@ Use <code>offsetBottom</code> option to insert pads under the box.
                                 <div class="main">
                                     <pre class="script">
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-5'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>  <span class="s1">'.wrapper-5'</span><span class="p">,</span>
-    <span class="nx">throttle</span><span class="o">:</span> <span class="mi">1000</span>  <span class="c1">// Default 10</span>
+    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-5'</span><span class="p">,</span>
+    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
 <span class="p">});</span></pre>
-If you have some performance problem, use <code>throttle</code> option to
-decrease the frequency of calculation. If the option is given, the calculation
-will be executed once in <code>throttle</code> msec.
+Use <code>offsetBottom</code> option to insert pads under the box.
+                                </div>
+                                <div class="margin-bottom-40px">
+                                    margin-bottom: 40px;
                                 </div>
                             </div>
                             <div class="span3">
@@ -171,20 +169,15 @@ will be executed once in <code>throttle</code> msec.
                                 <div class="main">
                                     <pre class="script">
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-6'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-6'</span><span class="p">,</span>
-    <span class="nx">offsetTop</span><span class="o">:</span>    <span class="mi">20</span><span class="p">,</span>
-    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
+    <span class="nx">wrapper</span><span class="o">:</span>  <span class="s1">'.wrapper-6'</span><span class="p">,</span>
+    <span class="nx">throttle</span><span class="o">:</span> <span class="mi">1000</span>  <span class="c1">// Default 10</span>
 <span class="p">});</span></pre>
-Combine options.
-                                </div>
-                                <div class="margin-bottom-40px">
-                                    margin-bottom: 40px;
+If you have some performance problem, use <code>throttle</code> option to
+decrease the frequency of calculation. If the option is given, the calculation
+will be executed once in <code>throttle</code> msec.
                                 </div>
                             </div>
                             <div class="span3">
-                                <div class="other">
-                                    other sidebar contents
-                                </div>
                                 <div class="scroll-chaser scroll-chaser-6">
                                     .scroll-chaser-6
                                 </div>
@@ -203,14 +196,21 @@ Combine options.
                                 <div class="main">
                                     <pre class="script">
 <span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-7'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-7'</span>  <span class="c1">// OR $('.wrapper-7')</span>
+    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-7'</span><span class="p">,</span>
+    <span class="nx">offsetTop</span><span class="o">:</span>    <span class="mi">20</span><span class="p">,</span>
+    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
 <span class="p">});</span></pre>
-Sidebar is taller than main contents? No problem :)
+Combine options.
+                                </div>
+                                <div class="margin-bottom-40px">
+                                    margin-bottom: 40px;
                                 </div>
                             </div>
                             <div class="span3">
-                                <div class="scroll-chaser scroll-chaser-7"
-                                    style="height: 300px;">
+                                <div class="other">
+                                    other sidebar contents
+                                </div>
+                                <div class="scroll-chaser scroll-chaser-7">
                                     .scroll-chaser-7
                                 </div>
                             </div>

@@ -1,10 +1,10 @@
 footer {
+    margin-top: 500px;
     border-top: 1px solid Gainsboro;
     padding: 30px;
     background-color: WhiteSmoke;
     color: Gray;
     text-align: center;
-    height: 500px;
 }
 
 .wrapper {
