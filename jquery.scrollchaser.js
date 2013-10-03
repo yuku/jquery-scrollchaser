@@ -64,6 +64,8 @@
       );
       $window.on('scroll', this.handler);
       $window.on('resize', this.handler);
+
+      this.handler();
     }
 
     $.extend(ScrollChaser.prototype, {
@@ -106,7 +108,8 @@
         } else {
           state = 'fixed';
         }
-        if (this.state !== state) { this.transferTo(state); }
+        if (this.state === state) return;
+        this.transferTo(state);
       },
 
       // State transition method
@@ -155,8 +158,8 @@
       }),
 
       getSentinelBottom: cache(function () {
-        return this.$wrapper.offset().top + this.getWrapperHeight()
-           + parseInt(this.$wrapper.css('margin-top'));
+        return this.$wrapper.offset().top + this.getWrapperHeight() +
+          parseInt(this.$wrapper.css('margin-top'), 10);
       }),
 
       //
