@@ -165,6 +165,7 @@
       //
 
       destroy: function () {
+        if (!this.$el) return;  // already destroyed
         this.transferTo('top');
         this.$el = this.$wrapper = null;
         $window.off('scroll', this.handler);
