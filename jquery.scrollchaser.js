@@ -25,6 +25,17 @@
     };
   };
 
+  var index = 0;
+  var cache = function (func) {
+    var key = (index++).toString();
+    return function () {
+      if (!this.cache[key]) {
+        this.cache[key] = func.apply(this);
+      }
+      return this.cache[key];
+    };
+  };
+
   var ScrollChaser = (function () {
 
     function ScrollChaser($el, options) {
@@ -47,6 +58,8 @@
       state: 'top',  // top, fixed or bottom
 
       onScroll: function (e) {
+        this.cache = {};  // cache clear
+
         var chaseHeight = this.getSentinelBottom() - this.getSentinelTop();
         if (chaseHeight - this.getOuterHeight() <= 0) {
           // No need to chase. Sidebar is taller than main contents.
@@ -103,26 +116,26 @@
       // Getter methods
       // --------------
 
-      getScrollTop: function () {
+      getScrollTop: cache(function () {
         return $window.scrollTop();
-      },
+      }),
 
-      getWrapperHeight: function () {
+      getWrapperHeight: cache(function () {
         return this.$wrapper.outerHeight();
-      },
+      }),
 
-      getOuterHeight: function () {
+      getOuterHeight: cache(function () {
         return this.$el.outerHeight(true) + this.offsetBottom;
-      },
+      }),
 
-      getSentinelTop: function () {
+      getSentinelTop: cache(function () {
         return this.sentinel.offset().top;
-      },
+      }),
 
-      getSentinelBottom: function () {
+      getSentinelBottom: cache(function () {
         return this.$wrapper.offset().top + this.getWrapperHeight()
            + parseInt(this.$wrapper.css('margin-top'));
-      }
+      })
     });
 
     return ScrollChaser;
