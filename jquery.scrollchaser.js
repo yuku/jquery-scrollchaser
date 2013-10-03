@@ -49,7 +49,11 @@
       this.$el.before(this.sentinel);
       this.offsetTop = options.offsetTop || 0;
       this.offsetBottom = options.offsetBottom || 0;
-      var handler = throttle(this.onScroll, this, options.throttle || 10);
+      this.position = options.position || 'top';
+      var handler = throttle(
+        this.position == 'bottom' ? this.onScrollBottom : this.onScrollTop,
+        this, options.throttle || 10
+      );
       $window.on('scroll', handler);
       $window.on('resize', handler);
     }
@@ -57,7 +61,7 @@
     $.extend(ScrollChaser.prototype, {
       state: 'top',  // top, fixed or bottom
 
-      onScroll: function (e) {
+      onScrollTop: function (e) {
         this.cache = {};  // cache clear
 
         if (this.getWrapperHeight() - this.getOuterHeight() <= 0) {
@@ -65,11 +69,32 @@
           return;
         }
 
-        var state;
-        if (this.getScrollTop() + this.offsetTop < this.getSentinelTop()) {
+        var state, offset = this.getScrollTop() + this.offsetTop;
+        if (offset < this.getSentinelTop()) {
           state = 'top';
-        } else if (this.getWindowBottomOffset() > this.getSentinelBottom()) {
+        } else if (offset + this.getOuterHeight() > this.getSentinelBottom()) {
           state = 'bottom';
+        } else {
+          state = 'fixed';
+        }
+        if (this.state === state) return;
+        this.transferTo(state);
+      },
+
+      onScrollBottom: function (e) {
+        this.cache = {};  // cache clear
+
+        if (this.getWrapperHeight() - this.getOuterHeight() <= 0) {
+          // No need to chase. Sidebar is taller than main contents.
+          return;
+        }
+
+        var state, offset;
+        offset = this.getScrollTop() + $window.height();
+        if (offset > this.getSentinelBottom()) {
+          state = 'bottom';
+        } else if (offset - this.getOuterHeight() < this.getSentinelTop()) {
+          state = 'top';
         } else {
           state = 'fixed';
         }
@@ -80,16 +105,23 @@
       // State transition methods
       transferTo: function (state) {
         this.state = state;
+        var prop;
         if (this.state === 'top') {
-          this.$el.css({ position: 'relative', top: 0 });
+          prop = { position: 'relative', top: 0, bottom: '' };
         } else if (this.state === 'bottom') {
-          this.$el.css({
+          prop = {
             position: 'absolute',
-            top: this.getWrapperHeight() - this.getOuterHeight()
-          });
+            top: this.getWrapperHeight() - this.getOuterHeight(),
+            bottom: ''
+          };
         } else {
-          this.$el.css({ position: 'fixed', top: this.offsetTop });
+          if (this.position === 'bottom') {
+            prop = { position: 'fixed', top: '', bottom: this.offsetBottom };
+          } else {
+            prop = { position: 'fixed', top: this.offsetTop, bottom: '' };
+          }
         }
+        this.$el.css(prop);
       },
 
       // Getter methods
@@ -114,11 +146,8 @@
       getSentinelBottom: cache(function () {
         return this.$wrapper.offset().top + this.getWrapperHeight()
            + parseInt(this.$wrapper.css('margin-top'));
-      }),
+      })
 
-      getWindowBottomOffset: function () {
-        return this.getScrollTop() + this.offsetTop + this.getOuterHeight();
-      }
     });
 
     return ScrollChaser;
