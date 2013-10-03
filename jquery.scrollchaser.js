@@ -60,56 +60,35 @@
       onScroll: function (e) {
         this.cache = {};  // cache clear
 
-        var chaseHeight = this.getSentinelBottom() - this.getSentinelTop();
-        if (chaseHeight - this.getOuterHeight() <= 0) {
+        if (this.getWrapperHeight() - this.getOuterHeight() <= 0) {
           // No need to chase. Sidebar is taller than main contents.
           return;
         }
 
+        var state;
         if (this.getScrollTop() + this.offsetTop < this.getSentinelTop()) {
-          this.stickToTop();
-          return;
-        }
-
-        var windowBottomOffset =
-            this.getScrollTop() + this.offsetTop + this.getOuterHeight();
-        if (windowBottomOffset > this.getSentinelBottom()) {
-          this.stickToBottom();
+          state = 'top';
+        } else if (this.getWindowBottomOffset() > this.getSentinelBottom()) {
+          state = 'bottom';
         } else {
-          this.stickToFixed();
+          state = 'fixed';
         }
+        if (this.state === state) return;
+        this.transferTo(state);
       },
 
-      // State transfer methods
-      // ----------------------
-
-      stickToTop: function () {
-        if (this.state !== 'top') {
-          this.$el.css({
-            position: 'relative',
-            top: 0
-          });
-          this.state = 'top';
-        }
-      },
-
-      stickToBottom: function () {
-        if (this.state !== 'bottom') {
+      // State transition methods
+      transferTo: function (state) {
+        this.state = state;
+        if (this.state === 'top') {
+          this.$el.css({ position: 'relative', top: 0 });
+        } else if (this.state === 'bottom') {
           this.$el.css({
             position: 'absolute',
             top: this.getWrapperHeight() - this.getOuterHeight()
           });
-          this.state = 'bottom';
-        }
-      },
-
-      stickToFixed: function () {
-        if (this.state !== 'fixed') {
-          this.$el.css({
-            position: 'fixed',
-            top: this.offsetTop
-          });
-          this.state = 'fixed';
+        } else {
+          this.$el.css({ position: 'fixed', top: this.offsetTop });
         }
       },
 
@@ -135,7 +114,11 @@
       getSentinelBottom: cache(function () {
         return this.$wrapper.offset().top + this.getWrapperHeight()
            + parseInt(this.$wrapper.css('margin-top'));
-      })
+      }),
+
+      getWindowBottomOffset: function () {
+        return this.getScrollTop() + this.offsetTop + this.getOuterHeight();
+      }
     });
 
     return ScrollChaser;
