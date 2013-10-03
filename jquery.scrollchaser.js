@@ -45,11 +45,19 @@
       if (this.$wrapper.css('position') === 'static') {
         this.$wrapper.css('position', 'relative');
       }
-      this.sentinel = $('<span></span>').css({ position: 'relative', height: 0 }),
+      this.sentinel = $('<span></span>').css({
+        position: options.ignore ? 'absolute' : 'relative',
+        top: 0,
+        height: 0
+      }),
       this.$el.before(this.sentinel);
       this.offsetTop = options.offsetTop || 0;
       this.offsetBottom = options.offsetBottom || 0;
       this.position = options.position || 'top';
+      this.ignore = options.ignore;  // Ignore other sidebar contents
+      if (this.ignore) {
+        this.$el.css({ position: 'absolute', top: 0 });
+      }
       this.handler = throttle(
         this.position == 'bottom' ? this.onScrollBottom : this.onScrollTop,
         this, options.throttle || 10
@@ -106,7 +114,11 @@
         this.state = state;
         var prop;
         if (this.state === 'top') {
-          prop = { position: 'relative', top: 0, bottom: '' };
+          prop = {
+            position: this.ignore ? 'absolute' : 'relative',
+            top: 0,
+            bottom: ''
+          };
         } else if (this.state === 'bottom') {
           prop = {
             position: 'absolute',
