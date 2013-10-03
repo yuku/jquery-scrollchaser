@@ -50,12 +50,12 @@
       this.offsetTop = options.offsetTop || 0;
       this.offsetBottom = options.offsetBottom || 0;
       this.position = options.position || 'top';
-      var handler = throttle(
+      this.handler = throttle(
         this.position == 'bottom' ? this.onScrollBottom : this.onScrollTop,
         this, options.throttle || 10
       );
-      $window.on('scroll', handler);
-      $window.on('resize', handler);
+      $window.on('scroll', this.handler);
+      $window.on('resize', this.handler);
     }
 
     $.extend(ScrollChaser.prototype, {
@@ -98,11 +98,10 @@
         } else {
           state = 'fixed';
         }
-        if (this.state === state) return;
-        this.transferTo(state);
+        if (this.state !== state) { this.transferTo(state); }
       },
 
-      // State transition methods
+      // State transition method
       transferTo: function (state) {
         this.state = state;
         var prop;
@@ -146,8 +145,16 @@
       getSentinelBottom: cache(function () {
         return this.$wrapper.offset().top + this.getWrapperHeight()
            + parseInt(this.$wrapper.css('margin-top'));
-      })
+      }),
 
+      //
+
+      destroy: function () {
+        this.transferTo('top');
+        this.$el = this.$wrapper = null;
+        $window.off('scroll', this.handler);
+        $window.off('resize', this.handler);
+      }
     });
 
     return ScrollChaser;
@@ -160,7 +167,14 @@
     } else if (!(options.wrapper instanceof $)) {
       options.wrapper = $(options.wrapper);
     }
-    new ScrollChaser(this, options);
+    this.scrollChaser = new ScrollChaser(this, options);
+    var that = this, origRemove = this.remove;
+
+    // Destroy scroll chaser when it is removed from DOM tree.
+    this.remove = function () {
+      that.scrollChaser.destroy();  // Prevent memory leak
+      origRemove.apply(that, arguments);
+    };
     return this;
   };
 
