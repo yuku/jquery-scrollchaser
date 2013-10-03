@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="media/stylesheets/font-awesome.css"/>
         <link rel="stylesheet" href="media/stylesheets/syntax.css"/>
         <link rel="stylesheet" href="media/stylesheets/main.css"/>
+        <link href="media/stylesheets/shCoreDefault.css" rel="stylesheet"/>
     </head>
     <body>
         <section>
@@ -37,10 +38,11 @@
                         <div class="row wrapper-1">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-1'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-1'</span>  <span class="c1">// OR $('.wrapper-1')</span>
-<span class="p">});</span></pre>
+<pre class="brush: js; script">
+$('.scroll-chaser-1').scrollChaser({
+    wrapper: '.wrapper-1'  // OR $('.wrapper-1')
+});
+</pre>
                                     If <code>wrapper</code> is not given, the
                                     box will chase to the bottom of the page.
                                 </div>
@@ -62,11 +64,12 @@
                         <div class="row wrapper-2">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-2'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-2'</span>
-<span class="p">});</span></pre>
-Sidebar can contain other contents.
+<pre class="brush: js; script">
+$('.scroll-chaser-2').scrollChaser({
+    wrapper: '.wrapper-2'
+});
+</pre>
+                                    Sidebar can contain other contents.
                                 </div>
                             </div>
                             <div class="span3">
@@ -89,11 +92,13 @@ Sidebar can contain other contents.
                         <div class="row wrapper-3">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-3'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span> <span class="s1">'.wrapper-3'</span>  <span class="c1">// OR $('.wrapper-3')</span>
-<span class="p">});</span></pre>
-Is a sidebar taller than a main contents? No problem :)
+<pre class="brush: js; script">
+$('.scroll-chaser-3').scrollChaser({
+    wrapper: '.wrapper-3'  // OR $('.wrapper-3')
+});
+</pre>
+                                    Is a sidebar taller than a main contents?
+                                    No problem :)
                                 </div>
                             </div>
                             <div class="span3">
@@ -114,12 +119,14 @@ Is a sidebar taller than a main contents? No problem :)
                         <div class="row wrapper-4">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-4'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>   <span class="s1">'.wrapper-4'</span><span class="p">,</span>
-    <span class="nx">offsetTop</span><span class="o">:</span> <span class="mi">20</span>
-<span class="p">});</span></pre>
-Use <code>offsetTop</code> option to insert pads on the box.
+<pre class="brush: js; script">
+$('.scroll-chaser-4').scrollChaser({
+    wrapper:   '.wrapper-4',
+    offsetTop: 20
+});
+</pre>
+                                    Use <code>offsetTop</code> option to insert
+                                    pads on the box.
                                 </div>
                             </div>
                             <div class="span3">
@@ -139,12 +146,14 @@ Use <code>offsetTop</code> option to insert pads on the box.
                         <div class="row wrapper-5">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-5'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-5'</span><span class="p">,</span>
-    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
-<span class="p">});</span></pre>
-Use <code>offsetBottom</code> option to insert pads under the box.
+<pre class="brush: js; script">
+$('.scroll-chaser-5').scrollChaser({
+    wrapper:      '.wrapper-5',
+    offsetBottom: 40
+});
+</pre>
+                                    Use <code>offsetBottom</code> option to
+                                    insert pads under the box.
                                 </div>
                                 <div class="margin-bottom-40px">
                                     margin-bottom: 40px;
@@ -167,14 +176,17 @@ Use <code>offsetBottom</code> option to insert pads under the box.
                         <div class="row wrapper-6">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-6'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>  <span class="s1">'.wrapper-6'</span><span class="p">,</span>
-    <span class="nx">throttle</span><span class="o">:</span> <span class="mi">1000</span>  <span class="c1">// Default 10</span>
-<span class="p">});</span></pre>
-If you have some performance problem, use <code>throttle</code> option to
-decrease the frequency of calculation. If the option is given, the calculation
-will be executed once in <code>throttle</code> msec.
+<pre class="brush: js; script">
+$('.scroll-chaser-6').scrollChaser({
+    wrapper:  '.wrapper-6',
+    throttle: 1000  // Default 10
+});
+</pre>
+                                    If you have some performance problem, use
+                                    <code>throttle</code> option to decrease
+                                    the frequency of calculation. If the option
+                                    is given, the calculation will be executed
+                                    once in <code>throttle</code> msec.
                                 </div>
                             </div>
                             <div class="span3">
@@ -194,13 +206,14 @@ will be executed once in <code>throttle</code> msec.
                         <div class="row wrapper-7">
                             <div class="offset1 span7">
                                 <div class="main">
-                                    <pre class="script">
-<span class="nx">$</span><span class="p">(</span><span class="s1">'.scroll-chaser-7'</span><span class="p">).</span><span class="nx">scrollChaser</span><span class="p">({</span>
-    <span class="nx">wrapper</span><span class="o">:</span>      <span class="s1">'.wrapper-7'</span><span class="p">,</span>
-    <span class="nx">offsetTop</span><span class="o">:</span>    <span class="mi">20</span><span class="p">,</span>
-    <span class="nx">offsetBottom</span><span class="o">:</span> <span class="mi">40</span>
-<span class="p">});</span></pre>
-Combine options.
+<pre class="brush: js; script">
+$('.scroll-chaser-7').scrollChaser({
+    wrapper:      '.wrapper-7',
+    offsetTop:    20,
+    offsetBottom: 40
+});
+</pre>
+                                    Combine options.
                                 </div>
                                 <div class="margin-bottom-40px">
                                     margin-bottom: 40px;
@@ -212,6 +225,39 @@ Combine options.
                                 </div>
                                 <div class="scroll-chaser scroll-chaser-7">
                                     .scroll-chaser-7
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sample 8 -->
+                <div class="row">
+                    <div class="span12"><h2 id="sample-8">Sample 8</h2></div>
+                    <div class="span12 wrapper">
+                        <div class="wrapper-text">.wrapper-8</div>
+                        <div class="row wrapper-8">
+                            <div class="offset1 span7">
+                                <div class="main">
+<pre class="brush: js; script">
+$('.scroll-chaser-8').scrollChaser({
+    wrapper:  '.wrapper-8',
+    position: 'bottom',
+    offsetBottom: 40
+});
+</pre>
+                                    Stick to bottom.
+                                </div>
+                                <div class="margin-bottom-40px">
+                                    margin-bottom: 40px;
+                                </div>
+                            </div>
+                            <div class="span3">
+                                <div class="other">
+                                    other sidebar contents
+                                </div>
+                                <div class="scroll-chaser scroll-chaser-8">
+                                    .scroll-chaser-8
                                 </div>
                             </div>
                         </div>
@@ -231,6 +277,8 @@ Combine options.
         </footer>
         <script src="media/javascripts/jquery-2.0.3.js"></script>
         <script src="jquery.scrollchaser.js"></script>
+        <script src="media/javascripts/shCore.js"></script>
+        <script src="media/javascripts/shBrushJScript.js"></script>
         <script src="media/javascripts/main.js"></script>
     </body>
 </html>
