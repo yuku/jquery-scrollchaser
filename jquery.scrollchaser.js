@@ -45,7 +45,7 @@
       if (this.$wrapper.css('position') === 'static') {
         this.$wrapper.css('position', 'relative');
       }
-      this.sentinel = $('<span></span>').css({
+      this.sentinel = $('<div></div>').css({
         position: options.ignore ? 'absolute' : 'relative',
         top: 0,
         height: 0
