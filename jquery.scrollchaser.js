@@ -44,52 +44,84 @@
     }
 
     $.extend(ScrollChaser.prototype, {
-      index: 0,
       state: 'top',  // top, fixed or bottom
 
       onScroll: function (e) {
-        var sentinelTop, sentinelBottom, scrollTop, outerHeight, wrapperHeight;
-        sentinelTop = this.sentinel.offset().top;
-        scrollTop = $window.scrollTop();
-        if (scrollTop + this.offsetTop < sentinelTop) {
-          if (this.state !== 'top') {
-            this.$el.css({
-              position: 'relative',
-              top: 0
-            });
-            this.state = 'top';
-          }
+        var chaseHeight = this.getSentinelBottom() - this.getSentinelTop();
+        if (chaseHeight - this.getOuterHeight() <= 0) {
+          // No need to chase. Sidebar is taller than main contents.
           return;
         }
 
-        wrapperHeight = this.$wrapper.outerHeight();
-        sentinelBottom = this.$wrapper.offset().top + wrapperHeight
-           + parseInt(this.$wrapper.css('margin-top'));
-        outerHeight = this.$el.outerHeight(true) + this.offsetBottom;
-        if (this.state = 'top') {
-          if (sentinelBottom - sentinelTop - outerHeight <= 0) {
-            // No need to chase. Sidebar is taller than main contents.
-            return;
-          }
+        if (this.getScrollTop() + this.offsetTop < this.getSentinelTop()) {
+          this.stickToTop();
+          return;
         }
 
-        if (scrollTop + this.offsetTop + outerHeight > sentinelBottom) {
-          if (this.state !== 'bottom') {
-            this.$el.css({
-              position: 'absolute',
-              top: wrapperHeight - outerHeight
-            });
-            this.state = 'bottom';
-          }
+        var windowBottomOffset =
+            this.getScrollTop() + this.offsetTop + this.getOuterHeight();
+        if (windowBottomOffset > this.getSentinelBottom()) {
+          this.stickToBottom();
         } else {
-          if (this.state !== 'fixed') {
-            this.$el.css({
-              position: 'fixed',
-              top: this.offsetTop
-            });
-            this.state = 'fixed';
-          }
+          this.stickToFixed();
         }
+      },
+
+      // State transfer methods
+      // ----------------------
+
+      stickToTop: function () {
+        if (this.state !== 'top') {
+          this.$el.css({
+            position: 'relative',
+            top: 0
+          });
+          this.state = 'top';
+        }
+      },
+
+      stickToBottom: function () {
+        if (this.state !== 'bottom') {
+          this.$el.css({
+            position: 'absolute',
+            top: this.getWrapperHeight() - this.getOuterHeight()
+          });
+          this.state = 'bottom';
+        }
+      },
+
+      stickToFixed: function () {
+        if (this.state !== 'fixed') {
+          this.$el.css({
+            position: 'fixed',
+            top: this.offsetTop
+          });
+          this.state = 'fixed';
+        }
+      },
+
+      // Getter methods
+      // --------------
+
+      getScrollTop: function () {
+        return $window.scrollTop();
+      },
+
+      getWrapperHeight: function () {
+        return this.$wrapper.outerHeight();
+      },
+
+      getOuterHeight: function () {
+        return this.$el.outerHeight(true) + this.offsetBottom;
+      },
+
+      getSentinelTop: function () {
+        return this.sentinel.offset().top;
+      },
+
+      getSentinelBottom: function () {
+        return this.$wrapper.offset().top + this.getWrapperHeight()
+           + parseInt(this.$wrapper.css('margin-top'));
       }
     });
 
