@@ -73,11 +73,10 @@
       state: 'top',  // top, fixed or bottom
       same: false,   // Sidebar has same height with wrapper
 
-      onScrollTop: function (e) {
+      onScrollTop: function () {
         this.cache = {};  // cache clear
 
-        if (this.same || this.state === 'top' &&
-            this.getSentinelBottom() - this.getBottom() - this.offsetBottom < MIN_SCROLL_HEIGHT) {
+        if (!this.ignore && (this.same || this.state === 'top' && this.isSameHeight())) {
           this.same = true;
           return;
         }
@@ -90,15 +89,14 @@
         } else {
           state = 'fixed';
         }
-        if (this.state === state) return;
+        if (this.state === state && state === 'fixed') return;
         this.transferTo(state);
       },
 
-      onScrollBottom: function (e) {
+      onScrollBottom: function () {
         this.cache = {};  // cache clear
 
-        if (this.same || this.state === 'top' &&
-            this.getSentinelBottom() - this.getBottom() - this.offsetBottom < MIN_SCROLL_HEIGHT) {
+        if (!this.ignore && (this.same || this.state === 'top' && this.isSameHeight())) {
           this.same = true;
           return;
         }
@@ -112,7 +110,7 @@
         } else {
           state = 'fixed';
         }
-        if (this.state === state) return;
+        if (this.state === state && state === 'fixed') return;
         this.transferTo(state);
       },
 
@@ -140,6 +138,10 @@
           }
         }
         this.$el.css(prop);
+      },
+
+      isSameHeight: function () {
+        return this.getSentinelBottom() - this.getBottom() - this.offsetBottom < MIN_SCROLL_HEIGHT;
       },
 
       // Getter methods
