@@ -11,6 +11,7 @@
   'use strict';
 
   var $window = $(window);
+  var MIN_SCROLL_HEIGHT = 50;
 
   var throttle = function (func, context, wait) {
     var previous = 0;
@@ -70,12 +71,14 @@
 
     $.extend(ScrollChaser.prototype, {
       state: 'top',  // top, fixed or bottom
+      same: false,   // Sidebar has same height with wrapper
 
       onScrollTop: function (e) {
         this.cache = {};  // cache clear
 
-        if (this.getWrapperHeight() - this.getOuterHeight() <= 0) {
-          // No need to chase. Sidebar is taller than main contents.
+        if (this.same || this.state === 'top' &&
+            this.getSentinelBottom() - this.getBottom() - this.offsetBottom < MIN_SCROLL_HEIGHT) {
+          this.same = true;
           return;
         }
 
@@ -94,8 +97,9 @@
       onScrollBottom: function (e) {
         this.cache = {};  // cache clear
 
-        if (this.getWrapperHeight() - this.getOuterHeight() <= 0) {
-          // No need to chase. Sidebar is taller than main contents.
+        if (this.same || this.state === 'top' &&
+            this.getSentinelBottom() - this.getBottom() - this.offsetBottom < MIN_SCROLL_HEIGHT) {
+          this.same = true;
           return;
         }
 
@@ -160,6 +164,10 @@
       getSentinelBottom: cache(function () {
         return this.$wrapper.offset().top + this.getWrapperHeight() +
           parseInt(this.$wrapper.css('margin-top'), 10);
+      }),
+
+      getBottom: cache(function () {
+        return this.$el.offset().top + this.getOuterHeight();
       }),
 
       //
