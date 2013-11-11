@@ -204,4 +204,16 @@
     return this;
   };
 
-})(jQuery);
+  if (!$.fn.outerHeight) {
+    // Zepto does not have $.fn.outerHeight
+    $.fn.outerHeight = function (includeMargin) {
+      var size = this.height();
+      if (!includeMargin) {
+        size -= parseInt(this.css('margin-bottom'), 10);
+        size -= parseInt(this.css('margin-top'), 10);
+      }
+      return size;
+    };
+  }
+
+})(window.jQuery || window.Zepto);
