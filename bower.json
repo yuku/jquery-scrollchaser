@@ -1,0 +1,25 @@
+{
+  "name": "jquery-scrollchaser",
+  "version": "0.0.6",
+  "homepage": "https://github.com/yuku-t/jquery-scrollchaser",
+  "authors": [
+    "Yuku Takahashi <taka84u9@gmail.com>"
+  ],
+  "description": "jquery",
+  "main": "jquery.scrollchaser.js",
+  "keywords": [
+    "jquery",
+    "scrollchaser"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*"
+  }
+}
